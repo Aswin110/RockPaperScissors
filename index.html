@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       const myArray=[
+            'rock',
+            'paper',
+            'scissors'
+       ];
+        
+       function computerPlay(){
+            return myArray[~~(Math.random()*myArray.length)] 
+       }
+
+       let computerScore;
+       let playerScore;
+       let playerSelection;
+       let computerSelection;
+
+       game();
+
+       function game(){
+            playerScore=0;
+            computerScore=0;
+            for ( let i=0;i<5;i++){
+                userInput();
+            }
+            console.log(declareResult());
+
+            function declareResult(){
+             if (playerScore===computerScore){
+                    alert (playerScore+' - '+computerScore+'\n tie game')
+                 return playerScore + ' - ' + computerScore + '\n Tie game!';
+
+                }
+                else if(playerScore>computerScore){
+                    alert (playerScore+' - '+computerScore+'\n You won')
+                    return playerScore + ' - ' + computerScore + '\n You win!!';
+                }else
+                {
+                    alert (playerScore + ' - ' + computerScore+'\n You lose. Better luck next time.')
+                    return playerScore + ' - ' + computerScore + '\n You lost. Better luck next time!';
+                }
+            }
+        }
+       function userInput(){
+            playerSelection = prompt('Enter rock, paper or scissors','');
+            if((playerSelection.toLowerCase()=='rock')||
+                (playerSelection.toLowerCase()=='paper')||
+                (playerSelection.toLowerCase()=='scissors'))
+            {
+                console.log(playerSelection);
+                console.log(computerSelection);
+                console.log(playRound(playerSelection,computerSelection));
+            }else
+            {
+                alert('invalid choice please enter again');
+                userInput();
+            }
+       }
+
+       function playRound(){
+            computerSelection=computerPlay().toLowerCase();
+            playerSelection=playerSelection.toLowerCase();
+            
+                if(playerSelection==computerSelection){
+                    alert('tie game');
+                    return 'tie game\n computer score: '+ computerScore + '\n player score: '+playerScore;
+                }else if((computerSelection=='rock'&&playerSelection=='scissors')||
+                        (computerSelection=='scissors'&&playerSelection=='paper')|| 
+                        (computerSelection=='paper'&&playerSelection=='rock'))
+                    {
+                        alert ('You lose '+computerSelection+' Beats ' +playerSelection);
+                        return 'computer score: '+ ++computerScore + '\n player score:'+playerScore
+                    }else{
+                        alert('you win! '+playerSelection+' beats '+computerSelection);
+                        return 'your score: '+ ++playerScore + '\n computer score :'+ computerScore;
+                    }
+         }
+
+    </script>
+</body>
+</html>
