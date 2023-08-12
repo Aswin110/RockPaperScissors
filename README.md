@@ -1,2 +1,0 @@
-# stonePaperScissors
-stone paper scissors
